@@ -18,7 +18,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/coinbase/rosetta-sdk-go/keys"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/keys"
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 

@@ -24,11 +24,11 @@ import (
 
 	"github.com/neilotoole/errgroup"
 
-	"github.com/coinbase/rosetta-sdk-go/storage/database"
-	"github.com/coinbase/rosetta-sdk-go/storage/encoder"
-	storageErrs "github.com/coinbase/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/encoder"
+	storageErrs "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 const (

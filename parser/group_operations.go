@@ -17,7 +17,7 @@ package parser
 import (
 	"sort"
 
-	"github.com/coinbase/rosetta-sdk-go/asserter"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/asserter"
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 

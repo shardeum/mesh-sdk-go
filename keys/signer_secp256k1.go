@@ -20,7 +20,7 @@ import (
 	zil_schnorr "github.com/Zilliqa/gozilliqa-sdk/schnorr"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
 
-	"github.com/coinbase/rosetta-sdk-go/asserter"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/asserter"
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 

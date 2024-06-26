@@ -1,4 +1,4 @@
-module github.com/TheArcadiaGroup/mesh-sdk-go
+module github.com/TheArcadiaGroup/rosetta-sdk-go
 
 go 1.18
 

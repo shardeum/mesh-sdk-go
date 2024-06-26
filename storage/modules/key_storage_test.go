@@ -21,9 +21,9 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/stretchr/testify/assert"
 
-	"github.com/coinbase/rosetta-sdk-go/keys"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/keys"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 func hash(message string) []byte {

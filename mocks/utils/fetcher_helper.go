@@ -7,7 +7,7 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	fetcher "github.com/coinbase/rosetta-sdk-go/fetcher"
+	fetcher "github.com/TheArcadiaGroup/rosetta-sdk-go/fetcher"
 	types "github.com/coinbase/rosetta-sdk-go/types"
 )
 

@@ -31,12 +31,12 @@ import (
 	"github.com/stretchr/testify/mock"
 	"github.com/tidwall/gjson"
 
-	"github.com/coinbase/rosetta-sdk-go/asserter"
-	"github.com/coinbase/rosetta-sdk-go/constructor/job"
-	mocks "github.com/coinbase/rosetta-sdk-go/mocks/constructor/worker"
-	"github.com/coinbase/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/asserter"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/constructor/job"
+	mocks "github.com/TheArcadiaGroup/rosetta-sdk-go/mocks/constructor/worker"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 func TestBalanceMessage(t *testing.T) {

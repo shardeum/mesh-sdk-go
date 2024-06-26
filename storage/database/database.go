@@ -17,7 +17,7 @@ package database
 import (
 	"context"
 
-	"github.com/coinbase/rosetta-sdk-go/storage/encoder"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/encoder"
 )
 
 // Database is an interface that provides transactional

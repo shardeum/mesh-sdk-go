@@ -22,7 +22,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/coinbase/rosetta-sdk-go/constructor/job"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/constructor/job"
 )
 
 func TestParse(t *testing.T) {

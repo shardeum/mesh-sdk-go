@@ -8,9 +8,9 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	asserter "github.com/coinbase/rosetta-sdk-go/asserter"
-	parser "github.com/coinbase/rosetta-sdk-go/parser"
-	database "github.com/coinbase/rosetta-sdk-go/storage/database"
+	asserter "github.com/TheArcadiaGroup/rosetta-sdk-go/asserter"
+	parser "github.com/TheArcadiaGroup/rosetta-sdk-go/parser"
+	database "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
 	types "github.com/coinbase/rosetta-sdk-go/types"
 )
 

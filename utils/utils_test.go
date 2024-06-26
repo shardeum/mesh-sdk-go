@@ -25,10 +25,10 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/coinbase/rosetta-sdk-go/asserter"
-	"github.com/coinbase/rosetta-sdk-go/fetcher"
-	mocks "github.com/coinbase/rosetta-sdk-go/mocks/utils"
-	storageErrors "github.com/coinbase/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/asserter"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/fetcher"
+	mocks "github.com/TheArcadiaGroup/rosetta-sdk-go/mocks/utils"
+	storageErrors "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 

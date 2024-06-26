@@ -24,8 +24,8 @@ import (
 	"github.com/fatih/color"
 	"golang.org/x/sync/errgroup"
 
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 // New creates a new Syncer. If pastBlocks is left nil, it will

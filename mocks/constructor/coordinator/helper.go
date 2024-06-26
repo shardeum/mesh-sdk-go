@@ -7,8 +7,8 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	keys "github.com/coinbase/rosetta-sdk-go/keys"
-	database "github.com/coinbase/rosetta-sdk-go/storage/database"
+	keys "github.com/TheArcadiaGroup/rosetta-sdk-go/keys"
+	database "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
 	types "github.com/coinbase/rosetta-sdk-go/types"
 )
 

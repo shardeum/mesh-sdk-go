@@ -22,9 +22,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	storageErrs "github.com/coinbase/rosetta-sdk-go/storage/errors"
+	storageErrs "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 const (

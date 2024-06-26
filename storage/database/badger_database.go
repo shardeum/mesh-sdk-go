@@ -32,10 +32,10 @@ import (
 	"github.com/dgraph-io/badger/v2/options"
 	"github.com/fatih/color"
 
-	"github.com/coinbase/rosetta-sdk-go/storage/encoder"
-	storageErrs "github.com/coinbase/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/encoder"
+	storageErrs "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 const (

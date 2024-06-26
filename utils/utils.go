@@ -31,8 +31,8 @@ import (
 
 	"github.com/fatih/color"
 
-	"github.com/coinbase/rosetta-sdk-go/fetcher"
-	storageErrors "github.com/coinbase/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/fetcher"
+	storageErrors "github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
 	"github.com/coinbase/rosetta-sdk-go/types"
 )
 

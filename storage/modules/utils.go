@@ -18,8 +18,8 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/coinbase/rosetta-sdk-go/storage/database"
-	"github.com/coinbase/rosetta-sdk-go/storage/errors"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/errors"
 )
 
 func storeUniqueKey(

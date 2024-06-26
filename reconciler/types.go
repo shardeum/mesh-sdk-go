@@ -19,10 +19,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/coinbase/rosetta-sdk-go/parser"
-	"github.com/coinbase/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/parser"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/storage/database"
+	"github.com/TheArcadiaGroup/rosetta-sdk-go/utils"
 	"github.com/coinbase/rosetta-sdk-go/types"
-	"github.com/coinbase/rosetta-sdk-go/utils"
 )
 
 const (
