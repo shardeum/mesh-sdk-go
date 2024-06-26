@@ -1,4 +1,4 @@
-// Copyright 2023 Coinbase, Inc.
+// Copyright 2024 Coinbase, Inc.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import (
 	_context "context"
 	"fmt"
 
-	_ioutil "io/ioutil"
+  _ioutil "io/ioutil"
 	_nethttp "net/http"
 
 	"github.com/coinbase/rosetta-sdk-go/types"
@@ -89,7 +89,10 @@ func (a *BlockAPIService) Block(
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	defer localVarHTTPResponse.Body.Close()
+	defer func() {
+		_, _ = io.Copy(io.Discard, localVarHTTPResponse.Body)
+		_ = localVarHTTPResponse.Body.Close()
+	}()
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to read response: %w", err)
 	}
@@ -195,7 +198,10 @@ func (a *BlockAPIService) BlockTransaction(
 	}
 
 	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
-	defer localVarHTTPResponse.Body.Close()
+	defer func() {
+		_, _ = io.Copy(io.Discard, localVarHTTPResponse.Body)
+		_ = localVarHTTPResponse.Body.Close()
+	}()
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to read response: %w", err)
 	}
