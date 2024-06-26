@@ -1,4 +1,4 @@
-module github.com/coinbase/rosetta-sdk-go
+module github.com/TheArcadiaGroup/mesh-sdk-go
 
 go 1.18
 
