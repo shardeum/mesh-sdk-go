@@ -140,6 +140,7 @@ func New(
 
 // Sync starts a new sync run after properly initializing blockStorage.
 func (s *StatefulSyncer) Sync(ctx context.Context, startIndex int64, endIndex int64) error {
+	//fmt.Println("stateful_syncer.go - func Sync")
 	s.blockStorage.Initialize(s.workers)
 
 	// Ensure storage is in correct state for starting at index
@@ -285,6 +286,7 @@ func (s *StatefulSyncer) BlockSeen(ctx context.Context, block *types.Block) erro
 
 // BlockAdded is called by the syncer when a block is added.
 func (s *StatefulSyncer) BlockAdded(ctx context.Context, block *types.Block) error {
+	// TODO: remove when fix blockHash
 	err := s.blockStorage.AddBlock(ctx, block)
 	if err != nil {
 		err = fmt.Errorf(
@@ -307,6 +309,8 @@ func (s *StatefulSyncer) BlockRemoved(
 	ctx context.Context,
 	blockIdentifier *types.BlockIdentifier,
 ) error {
+	//fmt.Println("check block removed", blockIdentifier.Index, blockIdentifier.Hash)
+	// TODO: remove when fix blockHash
 	err := s.blockStorage.RemoveBlock(ctx, blockIdentifier)
 	if err != nil {
 		err = fmt.Errorf(

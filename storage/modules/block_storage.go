@@ -81,6 +81,9 @@ func getBlockHashKey(hash string) (string, []byte) {
 func getBlockIndexKey(index int64) []byte {
 	return []byte(fmt.Sprintf("%s/%d", blockIndexNamespace, index))
 }
+func getBlockAndIndexKey(index int64) (string, []byte) {
+	return blockIndexNamespace, []byte(fmt.Sprintf("%s/%d", blockIndexNamespace, index))
+}
 
 func getTransactionKey(
 	blockIdentifier *types.BlockIdentifier,
@@ -296,8 +299,8 @@ func (b *BlockStorage) pruneBlock(
 			return -1, err
 		}
 
-		_, blockKey := getBlockHashKey(blockIdentifier.Hash)
-		if err := dbTx.Set(ctx, blockKey, []byte(""), true); err != nil {
+		_, blockIndex := getBlockAndIndexKey(blockIdentifier.Index)
+		if err := dbTx.Set(ctx, blockIndex, []byte(""), true); err != nil {
 			return -1, fmt.Errorf("unable to get block hash %s: %w", blockIdentifier.Hash, err)
 		}
 	}
@@ -431,7 +434,7 @@ func (b *BlockStorage) GetBlockLazyTransactional(
 			return nil, fmt.Errorf("unable to get head block identifier: %w", err)
 		}
 
-		namespace, key = getBlockHashKey(head.Hash)
+		namespace, key = getBlockAndIndexKey(head.Index)
 		exists, blockResponse, err = transaction.Get(ctx, key)
 	case blockIdentifier.Hash != nil:
 		// Get block by hash if provided
@@ -599,7 +602,7 @@ func (b *BlockStorage) seeBlock(
 	blockResponse *types.BlockResponse,
 ) (bool, error) {
 	blockIdentifier := blockResponse.Block.BlockIdentifier
-	namespace, key := getBlockHashKey(blockIdentifier.Hash)
+	namespace, key := getBlockAndIndexKey(blockIdentifier.Index)
 	buf, err := b.db.Encoder().Encode(namespace, blockResponse)
 	if err != nil {
 		return false, fmt.Errorf("unable to encode block: %w", err)
@@ -638,12 +641,12 @@ func (b *BlockStorage) storeBlock(
 	transaction database.Transaction,
 	blockIdentifier *types.BlockIdentifier,
 ) error {
-	_, key := getBlockHashKey(blockIdentifier.Hash)
+	_, key := getBlockAndIndexKey(blockIdentifier.Index)
 
 	if err := storeUniqueKey(
 		ctx,
 		transaction,
-		getBlockIndexKey(blockIdentifier.Index),
+		key,
 		key,
 		false,
 	); err != nil {
@@ -670,7 +673,7 @@ func (b *BlockStorage) SeeBlock(
 	ctx context.Context,
 	block *types.Block,
 ) error {
-	_, key := getBlockHashKey(block.BlockIdentifier.Hash)
+	_, key := getBlockAndIndexKey(block.BlockIdentifier.Index)
 	transaction := b.db.WriteTransaction(ctx, string(key), true)
 	defer transaction.Discard(ctx)
 
@@ -775,15 +778,16 @@ func (b *BlockStorage) deleteBlock(
 	// not error, it is possible that we could panic in the future as any
 	// further block removals would involve decoding pruned blocks.
 	oldestIndex, err := b.GetOldestBlockIndexTransactional(ctx, transaction)
+	//fmt.Println("oldestIndex", oldestIndex, err, blockIdentifier.Index)
 	if err != nil {
 		return fmt.Errorf("cannot read oldest index: %w", err)
 	}
 
-	if blockIdentifier.Index <= oldestIndex {
+	if blockIdentifier.Index < oldestIndex {
 		return storageErrs.ErrCannotRemoveOldest
 	}
 
-	_, key := getBlockHashKey(blockIdentifier.Hash)
+	_, key := getBlockAndIndexKey(blockIdentifier.Index)
 	if err := transaction.Delete(ctx, key); err != nil {
 		return fmt.Errorf("unable to delete block: %w", err)
 	}

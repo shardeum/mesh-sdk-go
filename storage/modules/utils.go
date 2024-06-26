@@ -44,6 +44,39 @@ func storeUniqueKey(
 
 	return transaction.Set(ctx, key, value, reclaimValue)
 }
+func deleteIfExist(
+	ctx context.Context,
+	transaction database.Transaction,
+	key []byte,
+) error {
+	exists, _, err := transaction.Get(ctx, key)
+	if err != nil {
+		return err
+	}
+
+	if exists {
+		return transaction.Delete(ctx, key)
+	}
+	return nil
+}
+func deleteOldIfExistAndInsertNewKey(
+	ctx context.Context,
+	transaction database.Transaction,
+	key []byte,
+	value []byte,
+	reclaimValue bool,
+) error {
+	exists, _, err := transaction.Get(ctx, key)
+	if err != nil {
+		return err
+	}
+
+	if exists {
+		transaction.Delete(ctx, key)
+	}
+
+	return transaction.Set(ctx, key, value, reclaimValue)
+}
 
 // newTestBadgerDatabase creates a new Badger Database at the following directory. This is
 // used extensively in module tests.

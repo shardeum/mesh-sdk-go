@@ -296,6 +296,7 @@ func (s *Syncer) fetchBlockResult(
 	network *types.NetworkIdentifier,
 	index int64,
 ) (*blockResult, error) {
+	//fmt.Println("syncer.go - func fetchBlockResult", index)
 	block, err := s.helper.Block(
 		ctx,
 		network,
@@ -303,6 +304,7 @@ func (s *Syncer) fetchBlockResult(
 			Index: &index,
 		},
 	)
+	//fmt.Println("syncer.go - func fetchBlockResult 222", block)
 
 	br := &blockResult{index: index}
 	switch {
@@ -355,6 +357,7 @@ func (s *Syncer) fetchBlocks(
 	blockIndices chan int64,
 	results chan *blockResult,
 ) error {
+	//fmt.Println("syncer.go - func fetchBlocks", blockIndices)
 	for b := range blockIndices {
 		br, err := s.fetchBlockResult(
 			ctx,
@@ -401,12 +404,14 @@ func (s *Syncer) processBlocks(
 	cache map[int64]*blockResult,
 	endIndex int64,
 ) error {
+	//fmt.Println("syncer.go - func processBlocks", cache[s.nextIndex], endIndex)
 	// We need to determine if we are in a reorg
 	// so that we can force blocks to be fetched
 	// if they don't exist in the cache.
 	reorgStart := int64(-1)
 
 	for s.nextIndex <= endIndex {
+		//fmt.Println("syncer.go - func processBlocks 111111", s.nextIndex, endIndex)
 		br, exists := cache[s.nextIndex]
 		if !exists {
 			// Wait for more blocks if we aren't
@@ -561,8 +566,11 @@ func (s *Syncer) sequenceBlocks( // nolint:golint
 	fetchedBlocks chan *blockResult,
 	endIndex int64,
 ) error {
+	//fmt.Println("syncer.go - func sequenceBlocks")
 	cache := make(map[int64]*blockResult)
+	//fmt.Println("syncer.go - func sequenceBlocks 1", cache)
 	for result := range fetchedBlocks {
+		//fmt.Println("syncer.go - func sequenceBlocks - ", result)
 		cache[result.index] = result
 
 		if err := s.processBlocks(ctx, cache, endIndex); err != nil {
@@ -671,6 +679,8 @@ func (s *Syncer) syncRange(
 		_ = g.Wait()
 		close(fetchedBlocks)
 	}()
+	//fmt.Println("syncer.go - func syncRange", fetchedBlocks)
+	//fmt.Printf("%#v\n", fetchedBlocks)
 
 	if err := s.sequenceBlocks(
 		ctx,
@@ -723,6 +733,7 @@ func (s *Syncer) Sync(
 	startIndex int64,
 	endIndex int64,
 ) error {
+	//fmt.Println("syncer.go - func Sync")
 	// context.Canceled could because of validation succeed,
 	// print an error in succeed situation will be confused
 	if err := s.setStart(ctx, startIndex); err != nil {

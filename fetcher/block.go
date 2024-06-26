@@ -217,6 +217,8 @@ func (f *Fetcher) UnsafeBlock(
 	network *types.NetworkIdentifier,
 	blockIdentifier *types.PartialBlockIdentifier,
 ) (*types.Block, *Error) {
+	//fmt.Println("block.go - func UnsafeBlock", blockIdentifier.Index)
+	//fmt.Printf("%#v\n", blockIdentifier.Index)
 	if err := f.connectionSemaphore.Acquire(ctx, semaphoreRequestWeight); err != nil {
 		err = fmt.Errorf("failed to acquire semaphore: %w%s", err, f.metaData)
 		color.Red(err.Error())
@@ -267,6 +269,7 @@ func (f *Fetcher) Block(
 	network *types.NetworkIdentifier,
 	blockIdentifier *types.PartialBlockIdentifier,
 ) (*types.Block, *Error) {
+	//fmt.Println("block.go - func Block", blockIdentifier.Index)
 	block, err := f.UnsafeBlock(ctx, network, blockIdentifier)
 	if err != nil {
 		return nil, err

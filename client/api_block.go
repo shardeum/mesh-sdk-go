@@ -19,6 +19,7 @@ package client
 import (
 	_context "context"
 	"fmt"
+
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 
@@ -45,6 +46,7 @@ func (a *BlockAPIService) Block(
 	ctx _context.Context,
 	blockRequest *types.BlockRequest,
 ) (*types.BlockResponse, *types.Error, error) {
+	//fmt.Println("api_block.go - func Block")
 	var (
 		localVarPostBody interface{}
 	)
@@ -73,6 +75,9 @@ func (a *BlockAPIService) Block(
 	// body params
 	localVarPostBody = blockRequest
 
+	//fmt.Printf("%#v\n", blockRequest.BlockIdentifier)
+	//fmt.Println(blockRequest.BlockIdentifier.Index, blockRequest.BlockIdentifier.Hash)
+	//fmt.Println("prepareRequest", localVarPath, localVarPostBody, localVarHeaderParams)
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarPostBody, localVarHeaderParams)
 	if err != nil {
 		return nil, nil, fmt.Errorf("failed to prepare request: %w", err)
